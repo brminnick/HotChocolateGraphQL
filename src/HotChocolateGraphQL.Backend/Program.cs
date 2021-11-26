@@ -1,4 +1,3 @@
-using HotChocolateGraphQL.Backend.Models;
 using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,28 +10,12 @@ app.UseRouting()
 
 app.Run();
 
-namespace HotChocolateGraphQL.Backend.Models
+
+public record Author(string Name);
+
+public record Book(string Title, Author Author);
+
+public class Query
 {
-	public class Author
-	{
-		public string Name { get; init; } = string.Empty;
-	}
-
-	public class Book
-	{
-		public string Title { get; init; } = string.Empty;
-		public Author? Author { get; init; }
-	}
-
-	public class Query
-	{
-		public Book GetBook() => new()
-		{
-			Title = "C# In Depth",
-			Author = new()
-			{
-				Name = "Jon Skeet"
-			}
-		};
-	}
+	public Book GetBook() => new("C# In Depth", new("Jon Skeet"));
 }
