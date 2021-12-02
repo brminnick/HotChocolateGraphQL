@@ -21,9 +21,7 @@ jobs:
         dotnet-version: '6.0.x'
 
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore src/
 
     - name: Build
-      run: |
-        cd src/HotChocolateGraphQL.Backend
-        dotnet build -c Release --no-restore
+      run: dotnet build src/HotChocolateGraphQL.Backend -c Release --no-restore
