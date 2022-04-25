@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HotChocolateGraphQL.Backend;
+﻿namespace HotChocolateGraphQL.Backend;
 
 public class BookQuery
 {
