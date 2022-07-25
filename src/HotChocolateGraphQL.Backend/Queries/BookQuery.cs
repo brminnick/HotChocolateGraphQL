@@ -15,7 +15,7 @@ public class BookQuery
 		for (int i = 0; i < count; i++)
 		{
 			yield return new Book(LoremIpsum.Generate(2, 10),
-							new Author(LoremIpsum.Generate(1, 2), new DateOnly(1970, 1, 1)));
+									new Author(LoremIpsum.Generate(1, 2), new DateOnly(1970, 1, 1)));
 		}
 	}
 }
