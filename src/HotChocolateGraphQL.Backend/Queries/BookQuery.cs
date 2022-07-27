@@ -4,11 +4,16 @@ public class BookQuery
 {
 	readonly IReadOnlyList<Book> _books = GenerateBooks(10).ToList();
 
+	[GraphQLDescription("Returns all Books")]
 	public IEnumerable<Book> GetBooks() => _books;
 
-	public Book GetBook(string title) => _books.First(x => x.Title == title);
+	[GraphQLDescription("Returns the specified Book")]
+	public Book GetBook([GraphQLDescription("Book Title")] string title) =>
+		_books.First(x => x.Title == title);
 
-	public Author GetAuthor(string name) => _books.First(x => x.Author.Name == name).Author;
+	[GraphQLDescription("Returns the specified Author")]
+	public Author GetAuthor([GraphQLDescription("Author Name")]string name) =>
+		_books.First(x => x.Author.Name == name).Author;
 
 	static IEnumerable<Book> GenerateBooks(int count)
 	{
