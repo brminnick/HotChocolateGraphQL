@@ -12,7 +12,7 @@ public class BookQuery
 		_books.First(x => x.Title == title);
 
 	[GraphQLDescription("Returns the specified Author")]
-	public Author GetAuthor([GraphQLDescription("Author Name")]string name) =>
+	public Author GetAuthor([GraphQLDescription("Author Name")] string name) =>
 		_books.First(x => x.Author.Name == name).Author;
 
 	static IEnumerable<Book> GenerateBooks(int count)
