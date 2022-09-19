@@ -1,0 +1,25 @@
+﻿schema {
+  query: BookQuery
+}
+
+type BookQuery {
+  "Returns all Books"
+  books: [Book!]!
+  "Returns the specified Book"
+  book("Book Title" title: String!): Book!
+  "Returns the specified Author"
+  author("Author Name" name: String!): Author!
+}
+
+type Book {
+  title: String!
+  author: Author!
+}
+
+type Author {
+  name: String!
+  birthday: Date!
+}
+
+"The `Date` scalar represents an ISO-8601 compliant date type."
+scalar Date
