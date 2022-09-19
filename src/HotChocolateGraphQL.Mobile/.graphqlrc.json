@@ -3,7 +3,7 @@
   "documents": "**/*.graphql",
   "extensions": {
     "strawberryShake": {
-      "name": "LibraryClient",
+      "name": "LibraryGraphQLClient",
       "namespace": "HotChocolateGraphQL.Mobile",
       "url": "http://localhost:5100/graphql/",
       "dependencyInjection": true,

@@ -1,0 +1,11 @@
+﻿query GetBooksQuery
+{
+  books
+  {
+    title
+    author {
+      name,
+      birthday
+    }
+  }
+}

@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Markup;
+using Polly;
 
 namespace HotChocolateGraphQL.Mobile;
 
@@ -8,6 +9,8 @@ public static partial class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
+		var graphQLUri = new Uri("http://localhost:5100/graphql");
+
 		var builder = MauiApp.CreateBuilder()
 						.UseMauiApp<App>()
 						.UseMauiCommunityToolkit()
@@ -21,23 +24,17 @@ public static partial class MauiProgram
 		// Add Shell
 		builder.Services.AddTransient<AppShell>();
 
+		// Add Pages + ViewModels
+		builder.Services.AddTransientWithShellRoute<BooksPage, BooksViewModel>();
+
 		// Add Services
-		builder.Services.AddSingleton<IDispatcher>();
 		builder.Services.AddSingleton<GraphQLService>();
 
-		builder.Services.AddTransientWithShellRoute<LibraryPage, LibraryViewModel>();
-
-		//builder.Services.AddMauiCryptoClient()
-		//				.ConfigureHttpClient(
-		//client =>
-		//{
-		//						client.BaseAddress = GetGraphQLUri(userService.GraphQLEndpoint);
-		//	client.DefaultRequestHeaders.Authorization = getAuthenticationHeaderValue(userService.Username, userService.GetPassword().Result);
-		//},
-		//clientBuilder => clientBuilder
-		//.ConfigurePrimaryHttpMessageHandler(GetHttpMessageHandler)
-		//										.AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(3, sleepDurationProvider)))
-		//										.ConfigureWebSocketClient(client => client.Uri = GetGraphQLStreamingUri(userService.GraphQLEndpoint));
+		builder.Services.AddLibraryGraphQLClient()
+						.ConfigureHttpClient(client => client.BaseAddress = GetGraphQLUri(graphQLUri),
+												clientBuilder => clientBuilder.ConfigurePrimaryHttpMessageHandler(GetHttpMessageHandler)
+																				.AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(3, sleepDurationProvider)))
+						.ConfigureWebSocketClient(client => client.Uri = GetGraphQLStreamingUri(graphQLUri));
 
 		return builder.Build();
 
@@ -52,8 +49,8 @@ public static partial class MauiProgram
 
 	static DecompressionMethods GetDecompressionMethods() => DecompressionMethods.Deflate | DecompressionMethods.GZip;
 
-	//private static partial Uri GetGraphQLUri(in Uri uri);
-	//private static partial Uri GetGraphQLStreamingUri(in Uri uri)
-	//private static partial HttpMessageHandler GetHttpMessageHandler();
+	private static partial Uri GetGraphQLUri(in Uri uri);
+	private static partial Uri GetGraphQLStreamingUri(in Uri uri);
+	private static partial HttpMessageHandler GetHttpMessageHandler();
 }
 
