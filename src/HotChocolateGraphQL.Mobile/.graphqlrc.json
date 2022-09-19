@@ -1,0 +1,30 @@
+{
+  "schema": "schema.graphql",
+  "documents": "**/*.graphql",
+  "extensions": {
+    "strawberryShake": {
+      "name": "LibraryGraphQLClient",
+      "namespace": "HotChocolateGraphQL.Mobile",
+      "url": "http://localhost:5100/graphql/",
+      "dependencyInjection": true,
+      "strictSchemaValidation": true,
+      "hashAlgorithm": "md5",
+      "useSingleFile": true,
+      "requestStrategy": "Default",
+      "outputDirectoryName": "Generated",
+      "noStore": false,
+      "emitGeneratedCode": true,
+      "razorComponents": false,
+      "records": {
+        "inputs": true,
+        "entities": true
+      },
+      "transportProfiles": [
+        {
+          "default": "Http",
+          "subscription": "WebSocket"
+        }
+      ]
+    }
+  }
+}
