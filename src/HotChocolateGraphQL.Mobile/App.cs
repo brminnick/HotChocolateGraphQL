@@ -3,9 +3,9 @@ namespace HotChocolateGraphQL.Mobile;
 
 class App : Application
 {
-	public App(LibraryPage libraryPage)
+	public App(AppShell appShell)
 	{
-		Mainp
+		MainPage = appShell;
 	}
 }
 

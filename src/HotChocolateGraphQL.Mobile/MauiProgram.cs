@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using Android.SE.Omapi;
 using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Markup;
 
@@ -24,21 +23,21 @@ public static partial class MauiProgram
 
 		// Add Services
 		builder.Services.AddSingleton<IDispatcher>();
-		builder.Services.AddSingleton<GraphQLSer>();
+		builder.Services.AddSingleton<GraphQLService>();
 
 		builder.Services.AddTransientWithShellRoute<LibraryPage, LibraryViewModel>();
 
-		builder.Services.AddMauiCryptoClient()
-						.ConfigureHttpClient(
-		client =>
-		{
-								client.BaseAddress = GetGraphQLUri(userService.GraphQLEndpoint);
-			client.DefaultRequestHeaders.Authorization = getAuthenticationHeaderValue(userService.Username, userService.GetPassword().Result);
-		},
-		clientBuilder => clientBuilder
-		.ConfigurePrimaryHttpMessageHandler(GetHttpMessageHandler)
-												.AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(3, sleepDurationProvider)))
-						.ConfigureWebSocketClient(client => client.Uri = GetGraphQLStreamingUri(userService.GraphQLEndpoint));
+		//builder.Services.AddMauiCryptoClient()
+		//				.ConfigureHttpClient(
+		//client =>
+		//{
+		//						client.BaseAddress = GetGraphQLUri(userService.GraphQLEndpoint);
+		//	client.DefaultRequestHeaders.Authorization = getAuthenticationHeaderValue(userService.Username, userService.GetPassword().Result);
+		//},
+		//clientBuilder => clientBuilder
+		//.ConfigurePrimaryHttpMessageHandler(GetHttpMessageHandler)
+		//										.AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(3, sleepDurationProvider)))
+		//										.ConfigureWebSocketClient(client => client.Uri = GetGraphQLStreamingUri(userService.GraphQLEndpoint));
 
 		return builder.Build();
 
@@ -53,6 +52,8 @@ public static partial class MauiProgram
 
 	static DecompressionMethods GetDecompressionMethods() => DecompressionMethods.Deflate | DecompressionMethods.GZip;
 
-	private static partial HttpMessageHandler GetHttpMessageHandler();
+	//private static partial Uri GetGraphQLUri(in Uri uri);
+	//private static partial Uri GetGraphQLStreamingUri(in Uri uri)
+	//private static partial HttpMessageHandler GetHttpMessageHandler();
 }
 

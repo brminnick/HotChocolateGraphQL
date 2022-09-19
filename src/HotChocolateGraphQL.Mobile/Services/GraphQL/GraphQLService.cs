@@ -1,9 +1,9 @@
 ﻿using System;
 namespace HotChocolateGraphQL.Mobile;
 
-public class GraphQLService
+class GraphQLService
 {
-	public GraphQLService(LibraryClient libraryClient)
+	public GraphQLService()
 	{
 	}
 }

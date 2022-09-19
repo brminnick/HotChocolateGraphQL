@@ -5,7 +5,7 @@
     "strawberryShake": {
       "name": "LibraryClient",
       "namespace": "HotChocolateGraphQL.Mobile",
-      "url": "http://localhost:6663/graphql/",
+      "url": "http://localhost:5100/graphql/",
       "dependencyInjection": true,
       "strictSchemaValidation": true,
       "hashAlgorithm": "md5",
@@ -16,8 +16,8 @@
       "emitGeneratedCode": true,
       "razorComponents": false,
       "records": {
-        "inputs": false,
-        "entities": false
+        "inputs": true,
+        "entities": true
       },
       "transportProfiles": [
         {

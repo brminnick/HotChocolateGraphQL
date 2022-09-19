@@ -1,9 +1,9 @@
 ﻿using System;
 namespace HotChocolateGraphQL.Mobile;
 
-public class LibraryPage : BasePage<LibraryViewModel>
+class LibraryPage : BasePage<LibraryViewModel>
 {
-	public LibraryPage()
+	public LibraryPage(LibraryViewModel libraryViewModel, IDispatcher dispatcher) : base(libraryViewModel, dispatcher, "Library")
 	{
 	}
 }
