@@ -75,12 +75,4 @@
 		<GraphQLConfig Remove=".graphqlrc.json" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Remove="Views\" />
-	  <None Remove="Views\Books\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Views\" />
-	  <Folder Include="Views\Books\" />
-	</ItemGroup>
 </Project>
