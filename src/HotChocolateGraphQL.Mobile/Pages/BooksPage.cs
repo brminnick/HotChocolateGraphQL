@@ -22,4 +22,3 @@ class BooksPage : BasePage<BooksViewModel>
 		}
 	}
 }
-
