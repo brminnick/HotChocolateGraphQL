@@ -22,4 +22,3 @@ public static partial class MauiProgram
 #endif
 	}
 }
-

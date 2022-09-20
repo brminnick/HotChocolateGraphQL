@@ -23,4 +23,3 @@ partial class BooksViewModel : BaseViewModel
 			Dispatcher.Dispatch(() => Books.Add(book));
 	}
 }
-

@@ -15,4 +15,3 @@ public static partial class MauiProgram
 
 	private static partial HttpMessageHandler GetHttpMessageHandler() => new HttpClientHandler { AutomaticDecompression = GetDecompressionMethods() };
 }
-

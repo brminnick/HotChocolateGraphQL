@@ -7,4 +7,3 @@ namespace HotChocolateGraphQL.Mobile;
 public class MainActivity : MauiAppCompatActivity
 {
 }
-

@@ -25,4 +25,3 @@ class App : Application
 		MainPage = appShell;
 	}
 }
-
