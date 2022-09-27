@@ -129,7 +129,7 @@ dotnet_diagnostic.CA1707.severity = none
 dotnet_diagnostic.CA1305.severity = suggestion
 
 # CA1822: Member does not access instance data and can be marked as static
-dotnet_diagnostic.CA1822.severity = error
+dotnet_diagnostic.CA1822.severity = suggestion
 
 # CA1050: Declar types in namespaces
 dotnet_diagnostic.CA1050.severity = error
