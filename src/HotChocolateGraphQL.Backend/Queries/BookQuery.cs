@@ -1,6 +1,6 @@
 ﻿namespace HotChocolateGraphQL.Backend;
 
-public class BookQuery
+public class Query
 {
 	readonly IReadOnlyList<Book> _books = GenerateBooks(10).ToList();
 
