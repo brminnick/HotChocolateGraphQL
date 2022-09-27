@@ -5,11 +5,11 @@ namespace HotChocolateGraphQL.Mobile;
 
 partial class BooksViewModel : BaseViewModel
 {
-	readonly GraphQLService _graphQLService;
+	readonly LibraryGraphQLClient _client;
 
-	public BooksViewModel(GraphQLService graphQLService, IDispatcher dispatcher) : base(dispatcher)
+	public BooksViewModel(LibraryGraphQLClient client, IDispatcher dispatcher) : base(dispatcher)
 	{
-		_graphQLService = graphQLService;
+		_client = client;
 	}
 
 	public ObservableCollection<IGetBooksQuery_Books> Books { get; } = new();
@@ -17,9 +17,6 @@ partial class BooksViewModel : BaseViewModel
 	[RelayCommand]
 	async Task RefreshBooks(CancellationToken token)
 	{
-		Books.Clear();
 
-		await foreach (var book in _graphQLService.GetBooks(token).ConfigureAwait(false))
-			Dispatcher.Dispatch(() => Books.Add(book));
 	}
 }
