@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using StrawberryShake;
 using CommunityToolkit.Mvvm.Input;
 
 namespace HotChocolateGraphQL.Mobile;
