@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>HotChocolateGraphQL.Mobile</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -27,16 +27,16 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <EnableCodeSigning>false</EnableCodeSigning>
 	</PropertyGroup>
 
-	<ItemGroup Condition="!$(TargetFramework.StartsWith('net6.0-android'))">
+	<ItemGroup Condition="!$(TargetFramework.EndsWith('-android'))">
 		<Compile Remove="**/*.Android.cs" />
 		<Compile Remove="**/Android/**/*.cs" />
 	</ItemGroup>
 
-	<ItemGroup Condition="!$(TargetFramework.StartsWith('net6.0-ios')) AND !$(TargetFramework.StartsWith('net6.0-maccatalyst'))">
+	<ItemGroup Condition="!$(TargetFramework.EndsWith('-ios')) AND !$(TargetFramework.EndsWith('-maccatalyst'))">
 		<Compile Remove="**/*.macios.cs" />
 		<Compile Remove="**/macios/**/*.cs" />
 	</ItemGroup>
@@ -62,7 +62,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="1.4.0" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
 	  <PackageReference Include="CommunityToolkit.Maui.Markup" Version="1.2.1" />
 	  <PackageReference Include="StrawberryShake.Maui" Version="13.0.0-preview.79" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
@@ -73,12 +73,5 @@
 		<GraphQL Remove="schema.graphql" />
 		<GraphQL Remove="schema.extensions.graphql" />
 		<GraphQLConfig Remove=".graphqlrc.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Platforms\Android\Resources\xml\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Platforms\Android\Resources\xml\" />
 	</ItemGroup>
 </Project>
