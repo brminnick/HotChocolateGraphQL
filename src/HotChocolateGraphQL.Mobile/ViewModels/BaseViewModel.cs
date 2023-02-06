@@ -3,8 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace HotChocolateGraphQL.Mobile;
 
-[INotifyPropertyChanged]
-abstract partial class BaseViewModel
+abstract class BaseViewModel : ObservableObject
 {
 	public BaseViewModel(IDispatcher dispatcher) => Dispatcher = dispatcher;
 
