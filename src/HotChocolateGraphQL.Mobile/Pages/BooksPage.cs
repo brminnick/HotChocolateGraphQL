@@ -4,7 +4,7 @@ namespace HotChocolateGraphQL.Mobile;
 
 class BooksPage : BasePage<BooksViewModel>
 {
-	public BooksPage(BooksViewModel libraryViewModel, IDispatcher dispatcher) : base(libraryViewModel, dispatcher, "Books")
+	public BooksPage(BooksViewModel libraryViewModel) : base(libraryViewModel, "Books")
 	{
 		BackgroundColor = Color.FromArgb("F8E28B");
 
