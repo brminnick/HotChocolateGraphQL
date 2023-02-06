@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 
@@ -7,20 +6,13 @@ namespace HotChocolateGraphQL.Mobile;
 
 abstract class BasePage<TViewModel> : BasePage where TViewModel : BaseViewModel
 {
-	readonly IDispatcher _dispatcher;
-
-	protected BasePage(in TViewModel viewModel, IDispatcher dispatcher, in string? title = null, in bool shouldUseSafeArea = true) : base(viewModel, title)
+	protected BasePage(in TViewModel viewModel, in string? title = null, in bool shouldUseSafeArea = true) : base(viewModel, title)
 	{
-		_dispatcher = dispatcher;
-
 		On<iOS>().SetUseSafeArea(shouldUseSafeArea);
 		On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.FormSheet);
 	}
 
 	public new TViewModel BindingContext => (TViewModel)base.BindingContext;
-
-	async void HandleHttpClientError(object? sender, string e) =>
-		await _dispatcher.DispatchAsync(() => DisplayAlert("GraphQL Connection Failed", e, "OK"));
 }
 
 abstract partial class BasePage : ContentPage
