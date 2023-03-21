@@ -8,17 +8,25 @@ class BooksPage : BasePage<BooksViewModel>
 	{
 		BackgroundColor = Color.FromArgb("F8E28B");
 
-		Content = new CollectionView()
-					.ItemTemplate(new BooksTemplate())
-					.Bind(CollectionView.ItemsSourceProperty, nameof(BooksViewModel.Books));
+		Content = new RefreshView
+		{
+			RefreshColor = Colors.Black,
+			Content = new CollectionView()
+						.ItemTemplate(new BooksTemplate())
+						.Bind(CollectionView.ItemsSourceProperty, static (BooksViewModel vm) => vm.Books, mode: BindingMode.OneTime)
+
+		}.Bind(RefreshView.IsRefreshingProperty, static (BooksViewModel vm) => vm.IsRefreshing)
+		 .Bind(RefreshView.CommandProperty, static (BooksViewModel vm) => vm.RefreshBooksCommand, mode: BindingMode.OneTime);
 	}
 
-	protected override async void OnAppearing()
+	protected override void OnAppearing()
 	{
-		if (BindingContext.Books.IsNullOrEmpty())
+		var refreshView = (RefreshView)Content;
+		var collectionView = (CollectionView)refreshView.Content;
+
+		if (collectionView.ItemsSource.IsNullOrEmpty())
 		{
-			var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
-			await BindingContext.RefreshBooksCommand.ExecuteAsync(cts.Token);
+			refreshView.IsRefreshing = true;
 		}
 	}
 }

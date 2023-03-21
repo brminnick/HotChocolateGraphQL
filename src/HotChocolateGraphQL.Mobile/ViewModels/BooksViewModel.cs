@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace HotChocolateGraphQL.Mobile;
@@ -6,6 +7,9 @@ namespace HotChocolateGraphQL.Mobile;
 partial class BooksViewModel : BaseViewModel
 {
 	readonly GraphQLService _graphQLService;
+
+	[ObservableProperty]
+	bool isRefreshing;
 
 	public BooksViewModel(GraphQLService graphQLService, IDispatcher dispatcher) : base(dispatcher)
 	{
@@ -19,7 +23,16 @@ partial class BooksViewModel : BaseViewModel
 	{
 		Books.Clear();
 
-		await foreach (var book in _graphQLService.GetBooks(token).ConfigureAwait(false))
-			Dispatcher.Dispatch(() => Books.Add(book));
+		try
+		{
+			await foreach (var book in _graphQLService.GetBooks(token).ConfigureAwait(false))
+			{
+				Dispatcher.Dispatch(() => Books.Add(book));
+			}
+		}
+		finally
+		{
+			IsRefreshing = false;
+		}
 	}
 }

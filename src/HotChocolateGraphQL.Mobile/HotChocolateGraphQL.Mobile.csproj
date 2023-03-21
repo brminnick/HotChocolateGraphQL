@@ -29,22 +29,8 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <EnableCodeSigning>false</EnableCodeSigning>
+	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
-
-	<ItemGroup Condition="!$(TargetFramework.EndsWith('-android'))">
-		<Compile Remove="**/*.Android.cs" />
-		<Compile Remove="**/Android/**/*.cs" />
-	</ItemGroup>
-
-	<ItemGroup Condition="!$(TargetFramework.EndsWith('-ios')) AND !$(TargetFramework.EndsWith('-maccatalyst'))">
-		<Compile Remove="**/*.macios.cs" />
-		<Compile Remove="**/macios/**/*.cs" />
-	</ItemGroup>
-
-	<ItemGroup Condition="!$(TargetFramework.Contains('-windows'))">
-		<Compile Remove="**/*.Windows.cs" />
-		<Compile Remove="**/Windows/**/*.cs" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<!-- App Icon -->

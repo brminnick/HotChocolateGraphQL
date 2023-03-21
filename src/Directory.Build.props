@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Project>
 	<PropertyGroup>
-		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
 		<WarningsAsErrors>nullable</WarningsAsErrors>
-		<ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+		<AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
 		<GenerateErrorForMissingTargetingPacks>false</GenerateErrorForMissingTargetingPacks>
 	</PropertyGroup>
 </Project>
