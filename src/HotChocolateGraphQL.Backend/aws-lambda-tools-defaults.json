@@ -1,0 +1,20 @@
+
+{
+    "region" : "us-west-1",
+    "profile" : "VisualStudioToolkit",
+    "configuration" : "Release",
+    "framework"     : "net6.0",
+    "function-name" : "HotChocolateGraphQL",
+    "package-type"  : "Zip",
+    "function-handler" : "HotChocolateGraphQL",
+    "function-memory-size" : 256,
+    "function-role"        : "arn:aws:iam::723361041013:role/lambda_exec_LambdaTriggers",
+    "function-timeout"     : 10,
+    "function-runtime"     : "dotnet6",
+    "function-architecture" : "x86_64",
+    "function-subnets"      : "",
+    "function-security-groups" : "",
+    "tracing-mode"             : "PassThrough",
+    "environment-variables"    : "",
+    "image-tag"                : ""
+}
