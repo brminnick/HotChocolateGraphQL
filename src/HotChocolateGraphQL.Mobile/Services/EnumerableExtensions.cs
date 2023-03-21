@@ -6,4 +6,3 @@ public static class EnumerableExtensions
 {
 	public static bool IsEnumerableNullOrEmpty(this IEnumerable? enumerable) => enumerable is not null && !enumerable.GetEnumerator().MoveNext();
 }
-
