@@ -33,12 +33,12 @@ public static partial class MauiProgram
 		builder.Services.AddLibraryGraphQLClient()
 						.ConfigureHttpClient(client => client.BaseAddress = GetGraphQLUri(graphQLUri),
 												clientBuilder => clientBuilder.ConfigurePrimaryHttpMessageHandler(GetHttpMessageHandler)
-																				.AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(3, sleepDurationProvider)))
+																				.AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(3, ExponentialBackoff)))
 						.ConfigureWebSocketClient(client => client.Uri = GetGraphQLStreamingUri(graphQLUri));
 
 		return builder.Build();
 
-		static TimeSpan sleepDurationProvider(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
+		static TimeSpan ExponentialBackoff(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
 	}
 
 	static IServiceCollection AddTransientWithShellRoute<TPage, TViewModel>(this IServiceCollection services) where TPage : BasePage<TViewModel>

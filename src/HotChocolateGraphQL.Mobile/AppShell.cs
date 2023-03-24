@@ -2,9 +2,9 @@
 
 class AppShell : Shell
 {
-	public AppShell()
+	public AppShell(BooksPage booksPage)
 	{
-		Items.Add(new ShellContent { ContentTemplate = new DataTemplate(typeof(BooksPage)) });
+		Items.Add(booksPage);
 	}
 
 	public static string GetRoute<TPage, TViewModel>() where TPage : BasePage<TViewModel>

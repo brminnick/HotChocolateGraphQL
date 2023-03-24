@@ -23,11 +23,11 @@ class BooksTemplate : DataTemplate
 		{
 			new BlackTextLabel(16).CenterVertical().Font(bold: true)
 				.Row(Row.Title)
-				.Bind(Label.TextProperty, nameof(IGetBooksQuery_Books.Title)),
+				.Bind(Label.TextProperty, static (IGetBooksQuery_Books books) => books.Title, mode: BindingMode.OneTime),
 
 			new BlackTextLabel(13).Font(italic: true).Margins(bottom: 5)
 				.Row(Row.Author)
-				.Bind(Label.TextProperty, nameof(IGetBooksQuery_Books.Author), convert: static (IGetBooksQuery_Books_Author? author) => $"by {author?.Name ?? "Unknown"}"),
+				.Bind(Label.TextProperty, static (IGetBooksQuery_Books books) => books.Author, mode: BindingMode.OneTime, convert: static (IGetBooksQuery_Books_Author? author) => $"by {author?.Name ?? "Unknown"}"),
 
 			new BoxView { Color = Colors.DarkGray }.Margin(5, 0)
 				.Row(Row.Separator)
