@@ -1,16 +1,8 @@
-﻿using System.Collections;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace HotChocolateGraphQL.Mobile;
 
-abstract partial class BaseViewModel : ObservableObject
+abstract partial class BaseViewModel(IDispatcher dispatcher) : ObservableObject
 {
-	public BaseViewModel(IDispatcher dispatcher) => Dispatcher = dispatcher;
-
-	protected IDispatcher Dispatcher { get; }
-}
-
-static class ViewModelExtensions
-{
-	public static bool IsNullOrEmpty(this IEnumerable? enumerable) => !enumerable?.GetEnumerator().MoveNext() ?? true;
+	protected IDispatcher Dispatcher { get; } = dispatcher;
 }

@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Markup;
+using Microsoft.Extensions.Http.Resilience;
 using Polly;
 
 namespace HotChocolateGraphQL.Mobile;
@@ -33,12 +34,10 @@ public static partial class MauiProgram
 		builder.Services.AddLibraryGraphQLClient()
 						.ConfigureHttpClient(client => client.BaseAddress = GetGraphQLUri(graphQLUri),
 												clientBuilder => clientBuilder.ConfigurePrimaryHttpMessageHandler(GetHttpMessageHandler)
-																				.AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(3, ExponentialBackoff)))
+													.AddStandardResilienceHandler(options => options.Retry = new MobileHttpRetryStrategyOptions()))
 						.ConfigureWebSocketClient(client => client.Uri = GetGraphQLStreamingUri(graphQLUri));
 
 		return builder.Build();
-
-		static TimeSpan ExponentialBackoff(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
 	}
 
 	static IServiceCollection AddTransientWithShellRoute<TPage, TViewModel>(this IServiceCollection services) where TPage : BasePage<TViewModel>
@@ -52,4 +51,15 @@ public static partial class MauiProgram
 	private static partial Uri GetGraphQLUri(in Uri uri);
 	private static partial Uri GetGraphQLStreamingUri(in Uri uri);
 	private static partial HttpMessageHandler GetHttpMessageHandler();
+	
+	sealed class MobileHttpRetryStrategyOptions : HttpRetryStrategyOptions
+	{
+		public MobileHttpRetryStrategyOptions()
+		{
+			BackoffType = DelayBackoffType.Exponential;
+			MaxRetryAttempts = 3;
+			UseJitter = true;
+			Delay = TimeSpan.FromSeconds(2);
+		}
+	}
 }

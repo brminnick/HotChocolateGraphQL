@@ -5,7 +5,6 @@ builder.Services.AddGraphQLServer()
 				.AddQueryType<Query>();
 
 var app = builder.Build();
-app.UseRouting()
-	.UseEndpoints(endpoints => endpoints.MapGraphQL());
+app.MapGraphQL();
 
 app.Run();

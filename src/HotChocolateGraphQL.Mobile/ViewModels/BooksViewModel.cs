@@ -9,7 +9,7 @@ partial class BooksViewModel : BaseViewModel
 	readonly LibraryGraphQLClient _client;
 
 	[ObservableProperty]
-	bool isRefreshing;
+	bool _isRefreshing;
 
 	public BooksViewModel(GraphQLService graphQLService, IDispatcher dispatcher) : base(dispatcher)
 	{
