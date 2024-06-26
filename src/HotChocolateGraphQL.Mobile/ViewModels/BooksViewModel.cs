@@ -6,14 +6,14 @@ namespace HotChocolateGraphQL.Mobile;
 
 partial class BooksViewModel : BaseViewModel
 {
-	readonly LibraryGraphQLClient _client;
+	readonly GraphQLService _graphQLService;
 
 	[ObservableProperty]
 	bool _isRefreshing;
 
 	public BooksViewModel(GraphQLService graphQLService, IDispatcher dispatcher) : base(dispatcher)
 	{
-		_client = client;
+		_graphQLService = graphQLService;
 	}
 
 	public ObservableCollection<IGetBooksQuery_Books> Books { get; } = new();
