@@ -3,12 +3,8 @@ using static CommunityToolkit.Maui.Markup.GridRowsColumns;
 
 namespace HotChocolateGraphQL.Mobile;
 
-class BooksTemplate : DataTemplate
+class BooksTemplate() : DataTemplate(CreateBooksTemplate)
 {
-	public BooksTemplate() : base(CreateBooksTemplate)
-	{
-
-	}
 
 	static Grid CreateBooksTemplate() => new()
 	{
@@ -23,11 +19,15 @@ class BooksTemplate : DataTemplate
 		{
 			new BlackTextLabel(16).CenterVertical().Font(bold: true)
 				.Row(Row.Title)
-				.Bind(Label.TextProperty, static (IGetBooksQuery_Books books) => books.Title, mode: BindingMode.OneTime),
+				.Bind(Label.TextProperty, 
+					getter: static (IGetBooksQuery_Books books) => books.Title, mode: BindingMode.OneTime),
 
 			new BlackTextLabel(13).Font(italic: true).Margins(bottom: 5)
 				.Row(Row.Author)
-				.Bind(Label.TextProperty, static (IGetBooksQuery_Books books) => books.Author, mode: BindingMode.OneTime, convert: static (IGetBooksQuery_Books_Author? author) => $"by {author?.Name ?? "Unknown"}"),
+				.Bind(Label.TextProperty, 
+					getter: static (IGetBooksQuery_Books books) => books.Author, 
+					mode: BindingMode.OneTime, 
+					convert: static author => $"by {author?.Name ?? "Unknown"}"),
 
 			new BoxView { Color = Colors.DarkGray }.Margin(5, 0)
 				.Row(Row.Separator)
@@ -36,7 +36,7 @@ class BooksTemplate : DataTemplate
 
 	enum Row { Title, Author, Separator }
 
-	class BlackTextLabel : Label
+	sealed class BlackTextLabel : Label
 	{
 		public BlackTextLabel(double fontSize)
 		{
