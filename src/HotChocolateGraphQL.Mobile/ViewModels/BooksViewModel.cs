@@ -23,6 +23,8 @@ partial class BooksViewModel : BaseViewModel
 	{
 		Books.Clear();
 
+		var minimumRefreshTimeTask = Task.Delay(TimeSpan.FromSeconds(2), token);
+
 		try
 		{
 			await foreach (var book in _graphQLService.GetBooks(token).ConfigureAwait(false))
@@ -32,6 +34,7 @@ partial class BooksViewModel : BaseViewModel
 		}
 		finally
 		{
+			await minimumRefreshTimeTask.ConfigureAwait(false);
 			IsRefreshing = false;
 		}
 	}
