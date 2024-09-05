@@ -1,4 +1,4 @@
-[![Backend](https://github.com/brminnick/HotChocolateGraphQL/actions/workflows/backend.yml/badge.svg)](https://github.com/brminnick/HotChocolateGraphQL/actions/workflows/backend.yml)
+[![Backend](https://github.com/brminnick/HotChocolateGraphQL/actions/workflows/backend.yml/badge.svg)](https://github.com/brminnick/HotChocolateGraphQL/actions/workflows/backend.yml) [![.NET MAUI](https://github.com/brminnick/HotChocolateGraphQL/actions/workflows/maui.yml/badge.svg)](https://github.com/brminnick/HotChocolateGraphQL/actions/workflows/maui.yml)
 
 # HotChocolateGraphQL
 
