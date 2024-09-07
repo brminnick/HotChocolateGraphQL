@@ -51,7 +51,7 @@ public static partial class MauiProgram
 	private static partial Uri GetGraphQLUri(in Uri uri);
 	private static partial Uri GetGraphQLStreamingUri(in Uri uri);
 	private static partial HttpMessageHandler GetHttpMessageHandler();
-	
+
 	sealed class MobileHttpRetryStrategyOptions : HttpRetryStrategyOptions
 	{
 		public MobileHttpRetryStrategyOptions()

@@ -19,14 +19,14 @@ class BooksTemplate() : DataTemplate(CreateBooksTemplate)
 		{
 			new BlackTextLabel(16).CenterVertical().Font(bold: true)
 				.Row(Row.Title)
-				.Bind(Label.TextProperty, 
+				.Bind(Label.TextProperty,
 					getter: static (IGetBooksQuery_Books books) => books.Title, mode: BindingMode.OneTime),
 
 			new BlackTextLabel(13).Font(italic: true).Margins(bottom: 5)
 				.Row(Row.Author)
-				.Bind(Label.TextProperty, 
-					getter: static (IGetBooksQuery_Books books) => books.Author, 
-					mode: BindingMode.OneTime, 
+				.Bind(Label.TextProperty,
+					getter: static (IGetBooksQuery_Books books) => books.Author,
+					mode: BindingMode.OneTime,
 					convert: static author => $"by {author?.Name ?? "Unknown"}"),
 
 			new BoxView { Color = Colors.DarkGray }.Margin(5, 0)

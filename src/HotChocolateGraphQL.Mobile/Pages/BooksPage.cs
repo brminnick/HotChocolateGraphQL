@@ -13,14 +13,14 @@ class BooksPage : BasePage<BooksViewModel>
 			RefreshColor = Colors.Black,
 			Content = new CollectionView()
 						.ItemTemplate(new BooksTemplate())
-						.Bind(CollectionView.ItemsSourceProperty, 
-							getter: static (BooksViewModel vm) => vm.Books, 
+						.Bind(CollectionView.ItemsSourceProperty,
+							getter: static (BooksViewModel vm) => vm.Books,
 							mode: BindingMode.OneTime)
 
-		}.Bind(RefreshView.IsRefreshingProperty, 
+		}.Bind(RefreshView.IsRefreshingProperty,
 				getter: static (BooksViewModel vm) => vm.IsRefreshing,
 				setter: static (BooksViewModel vm, bool isRefreshing) => vm.IsRefreshing = isRefreshing)
-		 .Bind(RefreshView.CommandProperty, 
+		 .Bind(RefreshView.CommandProperty,
 			 getter: static (BooksViewModel vm) => vm.RefreshBooksCommand, mode: BindingMode.OneTime);
 	}
 
