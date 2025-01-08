@@ -4,7 +4,7 @@ using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 
 namespace HotChocolateGraphQL.Mobile;
 
-abstract class BasePage<TViewModel> : BasePage where TViewModel : BaseViewModel
+abstract partial  class BasePage<TViewModel> : BasePage where TViewModel : BaseViewModel
 {
 	protected BasePage(in TViewModel viewModel, in string? title = null, in bool shouldUseSafeArea = true) : base(viewModel, title)
 	{

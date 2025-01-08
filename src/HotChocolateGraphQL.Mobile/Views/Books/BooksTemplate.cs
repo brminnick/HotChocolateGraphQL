@@ -3,7 +3,7 @@ using static CommunityToolkit.Maui.Markup.GridRowsColumns;
 
 namespace HotChocolateGraphQL.Mobile;
 
-class BooksTemplate() : DataTemplate(CreateBooksTemplate)
+partial class BooksTemplate() : DataTemplate(CreateBooksTemplate)
 {
 
 	static Grid CreateBooksTemplate() => new()
@@ -36,7 +36,7 @@ class BooksTemplate() : DataTemplate(CreateBooksTemplate)
 
 	enum Row { Title, Author, Separator }
 
-	sealed class BlackTextLabel : Label
+	sealed partial class BlackTextLabel : Label
 	{
 		public BlackTextLabel(double fontSize)
 		{

@@ -3,14 +3,9 @@ using StrawberryShake;
 
 namespace HotChocolateGraphQL.Mobile;
 
-class GraphQLService
+class GraphQLService(LibraryGraphQLClient client)
 {
-	readonly LibraryGraphQLClient _client;
-
-	public GraphQLService(LibraryGraphQLClient client)
-	{
-		_client = client;
-	}
+	readonly LibraryGraphQLClient _client = client;
 
 	public async IAsyncEnumerable<IGetBooksQuery_Books> GetBooks([EnumeratorCancellation] CancellationToken token)
 	{

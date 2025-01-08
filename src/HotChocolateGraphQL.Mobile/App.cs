@@ -2,10 +2,14 @@
 
 namespace HotChocolateGraphQL.Mobile;
 
-class App : Application
+partial class App : Application
 {
+	readonly AppShell _appShell;
+
 	public App(AppShell appShell)
 	{
+		_appShell = appShell;
+
 		Resources = new()
 		{
 			new Style<NavigationPage>(
@@ -20,7 +24,7 @@ class App : Application
 					(Shell.ForegroundColorProperty, Colors.Black),
 					(Shell.BackgroundColorProperty, Color.FromArgb("F1B340"))).ApplyToDerivedTypes(true)
 		};
-
-		MainPage = appShell;
 	}
+
+	protected override Window CreateWindow(IActivationState? activationState) => new(_appShell);
 }

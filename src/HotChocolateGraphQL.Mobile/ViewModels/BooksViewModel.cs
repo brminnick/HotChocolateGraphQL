@@ -4,19 +4,14 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace HotChocolateGraphQL.Mobile;
 
-partial class BooksViewModel : BaseViewModel
+partial class BooksViewModel(GraphQLService graphQLService, IDispatcher dispatcher) : BaseViewModel(dispatcher)
 {
-	readonly GraphQLService _graphQLService;
+	readonly GraphQLService _graphQLService = graphQLService;
 
 	[ObservableProperty]
-	bool _isRefreshing;
+	public partial bool IsRefreshing { get; set; }
 
-	public BooksViewModel(GraphQLService graphQLService, IDispatcher dispatcher) : base(dispatcher)
-	{
-		_graphQLService = graphQLService;
-	}
-
-	public ObservableCollection<IGetBooksQuery_Books> Books { get; } = new();
+	public ObservableCollection<IGetBooksQuery_Books> Books { get; } = [];
 
 	[RelayCommand]
 	async Task RefreshBooks(CancellationToken token)

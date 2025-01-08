@@ -2,7 +2,7 @@
 
 namespace HotChocolateGraphQL.Mobile;
 
-class BooksPage : BasePage<BooksViewModel>
+partial class BooksPage : BasePage<BooksViewModel>
 {
 	public BooksPage(BooksViewModel libraryViewModel) : base(libraryViewModel, "Books")
 	{

@@ -1,6 +1,6 @@
 ﻿namespace HotChocolateGraphQL.Mobile;
 
-class AppShell : Shell
+partial class AppShell : Shell
 {
 	public AppShell(BooksPage booksPage)
 	{
